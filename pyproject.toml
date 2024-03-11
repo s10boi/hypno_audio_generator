@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "Hypno Audio Generator"
+version = "1"
+description = "Generates a single text-to-speech audio file from multiple text files, for use in reinforcement/hypnosis audio."
+authors = ["s10boi <avonpup@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyttsx3 = "^2.90"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.6"
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,76 @@
+target-version = "py311"
+line-length = 120
+select = [
+    "F",
+    "E",
+    "W",
+    "I",
+    "N",
+    "D",
+    "UP",
+    "ANN",
+    "ASYNC",
+    "S",
+    "FBT",
+    "B",
+    "A",
+    "COM",
+    "C4",
+    "EM",
+    "FA",
+    "ISC",
+    "ICN",
+    "G",
+    "INP",
+    "PIE",
+    "PYI",
+    "PT",
+    "Q",
+    "RSE",
+    "RET",
+    "SLF",
+    "SIM",
+    "TID",
+    "TCH",
+    "ARG",
+    "PTH",
+    "ERA",
+    "PGH",
+    "PL",
+    "TRY",
+    "PERF",
+    "FURB",
+    "RUF",
+]
+ignore = [
+    "D100",
+    "D103",
+    "TRY301",
+    "SIM108",
+    "D101",
+    "D102",
+    "ANN101",
+    "ANN102",
+    "UP035",
+    "COM812",
+    "D104",
+    "RET505",
+    "PLW2901",
+    "PGH003",
+    "TRY003",
+    "EM101",
+    "D105",
+    "RET506",
+    "RUF001",
+]
+
+[pydocstyle]
+convention = "google"
+
+[flake8-annotations]
+ignore-fully-untyped = true
+allow-star-arg-any = true
+
+[per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+"test_*.py" = ["S101"]
