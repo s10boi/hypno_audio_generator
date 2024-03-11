@@ -29,4 +29,4 @@ It can be hard to find a hypnosis/reinforcement audio file that suits your speci
 3. Run the program: `python main.py`.
 4. Follow the prompts to choose each file in the order you want them to appear in the audio file. Additional prompts will ask for the number of times to repeat each file, and whether to randomise the line order for each repeat.
 5. Enter the name of the export file when prompted, and a .mp3 file will be generated in the `data/export` directory.
-6. Note that this is a **raw** audio file with just the text to speech voice speaking your script - you'll have to edit the .mp3 file in audio editing software (such as Audacity) to add any effects to make the file sound more suitable for hypnosis/reinforcement audio.
+6. Note that this is a **raw** audio file with just the text to speech voice speaking your script - you'll have to edit the .mp3 file in audio editing software (such as Audacity) to add any effects to make the file sound more suitable for hypnosis/reinforcement audio. More details on what I do can be found on my [blog](https://s10boi.blogspot.com/2024/03/how-i-make-hypno-programs.html)
