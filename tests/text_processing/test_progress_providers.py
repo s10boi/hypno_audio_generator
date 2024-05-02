@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.text_processing.progress_providers import _get_percentages, get_progress_marker_cycle_nums
+from src.text_processing.progress_providers import _get_percentages, get_progress_marker_cycle_nums  # noqa: PLC2701
 
 
 @pytest.mark.parametrize(
