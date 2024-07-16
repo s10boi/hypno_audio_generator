@@ -140,8 +140,12 @@ def get_text_from_files(*, import_dir: Path) -> str:
     text_filepaths = sorted(import_dir.glob("*.txt"))
 
     while True:
-        text_filepath = get_user_choice_from_sequence(text_filepaths, "\nEnter the number of the text file to import")
-
+        try:
+            text_filepath = get_user_choice_from_sequence(
+                text_filepaths, "\nEnter the number of the text file to import"
+            )
+        except ValueError as e:
+            raise ValueError from e
         file_text = _get_text_from_file(import_filepath=text_filepath)
         final_text.extend(file_text)
 
@@ -151,4 +155,4 @@ def get_text_from_files(*, import_dir: Path) -> str:
     if add_intro_outro:
         final_text.append("Program complete")
 
-    return "... ".join(final_text)
+    return ". ".join(final_text)
