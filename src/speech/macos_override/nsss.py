@@ -67,14 +67,13 @@ class HypnoNSSpeechDriver(NSObject):  # type: ignore # noqa: F405
                 self._toVoice(NSSpeechSynthesizer.attributesForVoice_(v))  # type: ignore
                 for v in list(NSSpeechSynthesizer.availableVoices())  # type: ignore
             ]
-        elif name == "voice":
+        if name == "voice":
             return self._tts.voice()  # type: ignore
-        elif name == "rate":
+        if name == "rate":
             return self._tts.rate()  # type: ignore
-        elif name == "volume":
+        if name == "volume":
             return self._tts.volume()  # type: ignore
-        else:
-            raise KeyError("unknown property %s" % name)  # type: ignore # noqa: UP031
+        raise KeyError("unknown property %s" % name)  # type: ignore # noqa: UP031
 
     @objc.python_method
     def setProperty(self, name, value):  # type: ignore # noqa: N802
@@ -100,10 +99,7 @@ class HypnoNSSpeechDriver(NSObject):  # type: ignore # noqa: F405
         self._tts.startSpeakingString_toURL_(text, url)  # type: ignore
 
     def speechSynthesizer_didFinishSpeaking_(self, tts, success):  # type: ignore # noqa: N802, ARG002
-        if not self._completed:
-            success = False
-        else:
-            success = True
+        success = bool(self._completed)
         self._proxy.notify("finished-utterance", completed=success)  # type: ignore
         self._proxy.setBusy(False)  # type: ignore
 

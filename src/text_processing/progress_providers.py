@@ -35,7 +35,8 @@ def get_progress_marker_cycle_nums(*, num_cycles: int, num_markers: int) -> dict
     progress_markers: dict[int, int] = {}
 
     if num_markers < 2 or num_cycles < 2:  # noqa: PLR2004
-        raise ValueError("num_markers and num_cycles must be greater than 1")
+        msg = "num_markers and num_cycles must be greater than 1"
+        raise ValueError(msg)
 
     for percentage in _get_percentages(num_markers):
         percentage_index = round(num_cycles * (percentage / 100))

@@ -14,7 +14,11 @@ type ProgressProviderFunc = Callable[[], dict[int, int]]
 
 
 def _process_file(
-    *, filepath: Path, num_cycles: int, line_provider: LineProviderFunc, progress_provider: ProgressProviderFunc
+    *,
+    filepath: Path,
+    num_cycles: int,
+    line_provider: LineProviderFunc,
+    progress_provider: ProgressProviderFunc,
 ) -> list[str]:
     """Generates text from a file, using the given `line_provider` and `progress_provider` functions.
 
@@ -73,7 +77,7 @@ def _get_text_from_file(*, import_filepath: Path) -> list[str]:
             "\nShuffle line order?\n"
             "- If 'yes', the lines will be shuffled before being repeated and will be in a different order each cycle\n"
             "- If 'no', the lines will be repeated in the order specified in the input file."
-        )
+        ),
     ):
         line_provider = shuffle_lines
     else:
@@ -86,7 +90,7 @@ def _get_text_from_file(*, import_filepath: Path) -> list[str]:
                 "- If 'yes', progress markers will be added to the text at regular intervals (specified in the next "
                 "step). Progress reports will be spoken in between complete cycles, for example: 'Programming at 25%'\n"
                 "- If 'no', no progress markers will be added."
-            )
+            ),
         )
     ):
         num_markers = get_int_user_choice_ge(
@@ -122,6 +126,9 @@ def get_text_from_files(*, import_dir: Path) -> str:
 
     Returns:
         str: The final text, as a string.
+
+    Raises:
+        ValueError: If the user enters an invalid value.
     """
     final_text: list[str] = []
 
@@ -131,7 +138,7 @@ def get_text_from_files(*, import_dir: Path) -> str:
             "- If 'yes', the program will start with the line 'Begiining program.' and end with the line 'Program "
             "complete.'\n"
             "- If 'no', the program will start and end with the text from the imported files."
-        )
+        ),
     ):
         final_text.append("Beginning program.")
 
@@ -142,7 +149,8 @@ def get_text_from_files(*, import_dir: Path) -> str:
     while True:
         try:
             text_filepath = get_user_choice_from_sequence(
-                text_filepaths, "\nEnter the number of the text file to import"
+                text_filepaths,
+                "\nEnter the number of the text file to import",
             )
         except ValueError as e:
             raise ValueError from e
