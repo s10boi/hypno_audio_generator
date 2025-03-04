@@ -162,3 +162,4 @@ cython_debug/
 # Project-specific
 data/
 .ruff_cache/
+.DS_Store
