@@ -1,5 +1,5 @@
 from src.files_io import get_import_export_dirs
-from src.speech.speech import export_audio
+from src.speech import export_audio
 from src.text_processing.get_text import get_text_from_files
 
 
