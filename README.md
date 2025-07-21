@@ -18,6 +18,12 @@ It can be hard to find a hypnosis/reinforcement audio file that suits your speci
 - **Join Multiple Files**: You can choose to join multiple text files into a single audio file, or generate separate audio files for each text file. For example, you could have an "intro" file that doesn't repeat and isnt suffled, and then a "main" file that repeats and is shuffled, which can export as a single mp3 file.
 - **Your Language**: Since it uses your Operating System's text-to-speech engine, you can use any language or accent that your OS's text to speech engine supports - just write your text files in the appropriate language, and set your OS's default text-to-speech voice to the desired language/accent.
 
+## Table of Contents
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Running the Program](#running-the-program)
+- [Editing the Raw Audio File](#editing-the-raw-audio-file)
+
 ## Requirements
 - [Python 3.13](https://www.python.org/downloads/release/python-313/) or higher.
 - **Optional**: [uv](https://docs.astral.sh/uv/) - to simplify dependency management and running the program, or pip if you prefer (see [installation notes](#installation) below).
