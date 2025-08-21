@@ -37,7 +37,7 @@ def _process_file(
     progress_report_cycles = progress_provider()
 
     # open the filepath and make a list of each line
-    with filepath.open() as file:
+    with filepath.open(encoding="utf-8") as file:
         lines = [line.replace("\n", "").strip().removesuffix(".") for line in file.readlines()]
 
     # repeat the lines num_cycles times
