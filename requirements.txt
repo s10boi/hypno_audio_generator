@@ -690,7 +690,7 @@ pypiwin32==223 ; sys_platform == 'win32'
     # via pyttsx3
 pyttsx3==2.99
     # via hypno-audio-generator (pyproject.toml)
-pywin32==308 ; sys_platform == 'win32'
+pywin32==311 ; sys_platform == 'win32'
     # via
     #   pypiwin32
     #   pyttsx3
