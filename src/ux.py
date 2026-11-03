@@ -22,7 +22,11 @@ def get_user_choice_from_sequence[T](sequence: Sequence[T], message: str) -> T:
         for i, item in enumerate(sequence):
             print(f"{i + 1}. {item}")
 
-        choice = int(input("Enter your choice: "))
+        try:
+            choice = int(input("Enter your choice: "))
+        except ValueError:
+            print("Invalid choice. Try again.")
+            continue
         if choice not in range(1, len(sequence) + 1):
             print("Invalid choice. Try again.")
         else:

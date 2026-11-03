@@ -1,6 +1,6 @@
 from src.files_io import get_import_export_dirs
 from src.speech import export_audio
-from src.text_processing.get_text import get_text_from_files
+from src.text_processing.get_text import NoTextFilesError, get_text_from_files
 
 
 def main() -> None:
@@ -8,8 +8,8 @@ def main() -> None:
 
     try:
         text = get_text_from_files(import_dir=import_dir)
-    except ValueError:
-        print("No text files found in import directory. Exiting program.")
+    except NoTextFilesError as e:
+        print(f"{e}. Add some .txt files and run the program again.")
     else:
         output_filename = input("Enter output filename (without extension): ")
         export_filepath = export_dir / f"{output_filename}.wav"

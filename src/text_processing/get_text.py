@@ -10,6 +10,19 @@ type LineProviderFunc = Callable[[Sequence[str]], list[str]]
 type ProgressProviderFunc = Callable[[], dict[int, int]]
 
 
+class NoTextFilesError(Exception):
+    """Raised when the import directory contains no text files."""
+
+    def __init__(self, import_dir: Path) -> None:
+        """Initialises the error.
+
+        Args:
+            import_dir (Path): The directory that was searched for text files.
+        """
+        super().__init__(f"No text files found in {import_dir}")
+        self.import_dir = import_dir
+
+
 def _read_lines(filepath: Path) -> list[str]:
     """Reads the lines of a UTF-8 text file, skipping blank lines and removing trailing full stops.
 
@@ -136,8 +149,12 @@ def get_text_from_files(*, import_dir: Path) -> str:
         str: The final text, as a string.
 
     Raises:
-        ValueError: If the user enters an invalid value.
+        NoTextFilesError: If `import_dir` contains no text files.
     """
+    text_filepaths = sorted(import_dir.glob("*.txt"))
+    if not text_filepaths:
+        raise NoTextFilesError(import_dir)
+
     final_text: list[str] = []
 
     if add_intro_outro := get_bool_user_choice(
@@ -152,17 +169,21 @@ def get_text_from_files(*, import_dir: Path) -> str:
 
     print(f"{'LOAD FILES':=^80}")
 
-    text_filepaths = sorted(import_dir.glob("*.txt"))
-
     while True:
+        text_filepath = get_user_choice_from_sequence(
+            text_filepaths,
+            "\nEnter the number of the text file to import",
+        )
         try:
-            text_filepath = get_user_choice_from_sequence(
-                text_filepaths,
-                "\nEnter the number of the text file to import",
-            )
-        except ValueError as e:
-            raise ValueError from e
-        file_text = _get_text_from_lines(lines=_read_lines(text_filepath))
+            lines = _read_lines(text_filepath)
+        except UnicodeDecodeError:
+            print(f"\n{text_filepath.name} is not UTF-8 encoded. Re-save it as UTF-8 and choose it again.")
+            continue
+        if not lines:
+            print(f"\n{text_filepath.name} has no lines in it. Choose another file.")
+            continue
+
+        file_text = _get_text_from_lines(lines=lines)
         final_text.extend(file_text)
 
         if not get_bool_user_choice("\nAdd another file?"):
