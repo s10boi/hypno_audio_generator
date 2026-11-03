@@ -3,7 +3,7 @@ name = "hypno-audio-generator"
 version = "1.1.6"
 description = "Generates a single text-to-speech audio file from multiple text files, for use in reinforcement/hypnosis audio."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.15"
 dependencies = [
     "pyttsx3>=2.99",
 ]

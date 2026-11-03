@@ -1,4 +1,4 @@
-target-version = "py313"
+target-version = "py315"
 line-length = 120
 preview = true
 lint.select = [

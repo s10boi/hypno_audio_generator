@@ -25,7 +25,7 @@ It can be hard to find a hypnosis/reinforcement audio file that suits your speci
 - [Editing the Raw Audio File](#editing-the-raw-audio-file)
 
 ## Requirements
-- [Python 3.13](https://www.python.org/downloads/release/python-313/) or higher.
+- [Python 3.15](https://www.python.org/downloads/release/python-315/) or higher.
 - **Optional**: [uv](https://docs.astral.sh/uv/) - to simplify dependency management and running the program, or pip if you prefer (see [installation notes](#installation) below).
 
 ## Installation
@@ -34,7 +34,7 @@ I strongly recommend using [uv](https://docs.astral.sh/uv/), which will simplify
 ### Using `uv`
 1. Clone or download the respository
 2. Open a terminal in the project directory
-3. Run the following command to install dependencies (this will also automatically install Python 3.13 if you don't have it):
+3. Run the following command to install dependencies (this will also automatically install Python 3.15 if you don't have it):
     ```bash
     uv sync
     ```
