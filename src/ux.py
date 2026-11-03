@@ -66,3 +66,44 @@ def get_int_user_choice_ge(message: str, min_value: int) -> int:
         if user_choice >= min_value:
             return user_choice
         print(f"Choice must be greater than or equal to {min_value}. Try again.")
+
+
+_INVALID_FILENAME_CHARS = frozenset('<>:"/\\|?*')
+_RESERVED_WINDOWS_NAMES = frozenset({
+    "CON",
+    "PRN",
+    "AUX",
+    "NUL",
+    *(f"COM{i}" for i in range(1, 10)),
+    *(f"LPT{i}" for i in range(1, 10)),
+})
+
+
+def _is_invalid_filename_char(char: str) -> bool:
+    return char in _INVALID_FILENAME_CHARS or not char.isprintable()
+
+
+def _get_filename_problem(filename: str) -> str | None:
+    """Returns why `filename` can't be used as a filename on Windows, macOS and Linux, or `None` if it can."""
+    if not filename:
+        return "The filename can't be empty."
+    if invalid_chars := sorted(set(filter(_is_invalid_filename_char, filename))):
+        return f"The filename can't contain {' '.join(map(repr, invalid_chars))}."
+    if filename.endswith("."):
+        return "The filename can't end with a full stop."
+    if filename.partition(".")[0].upper() in _RESERVED_WINDOWS_NAMES:
+        return f"{filename!r} is a reserved filename on Windows."
+    return None
+
+
+def get_filename_user_choice(message: str) -> str:
+    """Gets a filename from the user that is valid on Windows, macOS and Linux.
+
+    Leading and trailing whitespace is removed.
+    """
+    while True:
+        filename = input(message).strip()
+        if (problem := _get_filename_problem(filename)) is not None:
+            print(f"{problem} Try again.")
+        else:
+            return filename
