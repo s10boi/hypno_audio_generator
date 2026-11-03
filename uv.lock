@@ -40,7 +40,7 @@ requires-dist = [{ name = "pyttsx3", specifier = ">=2.99" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytest", specifier = ">=9.0" },
     { name = "ruff", specifier = ">=0.8.4" },
     { name = "ty", specifier = ">=0.0.3" },
 ]

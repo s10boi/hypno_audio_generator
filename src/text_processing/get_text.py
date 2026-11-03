@@ -38,12 +38,12 @@ def _process_file(
         lines = [line.replace("\n", "").strip().removesuffix(".") for line in file.readlines()]
 
     # repeat the lines num_cycles times
-    for cycle in range(num_cycles):
+    for completed_cycles in range(1, num_cycles + 1):
         generated_lines = line_provider(lines)
         final_lines.extend(generated_lines)
 
-        if cycle in progress_report_cycles:
-            final_lines.append(f"Programming at {progress_report_cycles[cycle]} percent")
+        if completed_cycles in progress_report_cycles:
+            final_lines.append(f"Programming at {progress_report_cycles[completed_cycles]} percent")
 
     return final_lines
 
