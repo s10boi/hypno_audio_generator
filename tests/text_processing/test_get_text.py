@@ -82,3 +82,11 @@ def test_get_text_from_files_reprompts_for_unreadable_and_empty_files(
     output = capsys.readouterr().out
     assert "a_latin1.txt is not UTF-8 encoded" in output
     assert "b_empty.txt has no lines in it" in output
+
+
+def test_get_text_from_files_adds_intro_and_outro(tmp_path: Path, feed_input: FeedInput) -> None:
+    _ = (tmp_path / "lines.txt").write_text("A\nB\n", encoding="utf-8")
+    # intro/outro: yes, file 1, 1 cycle, no shuffle, no more files
+    feed_input("y", "1", "1", "n", "n")
+
+    assert get_text_from_files(import_dir=tmp_path) == "Beginning program. A. B. Program complete"

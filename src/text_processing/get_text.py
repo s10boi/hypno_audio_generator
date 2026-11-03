@@ -117,8 +117,8 @@ def _get_text_from_lines(*, lines: Sequence[str]) -> list[str]:
         num_markers = get_int_user_choice_ge(
             message=(
                 "\nEnter the number of progress markers\n"
-                "- For example, if you enter 4, progress markers will be added at 25%, 50%, 75%, and 100% of the "
-                "total cycles.\n"
+                "- For example, if you enter 4, progress markers will be added after 25%, 50% and 75% of the total "
+                "cycles (the end of the file is 100%).\n"
                 "- Must be 2 or higher."
             ),
             min_value=2,
@@ -160,12 +160,12 @@ def get_text_from_files(*, import_dir: Path) -> str:
     if add_intro_outro := get_bool_user_choice(
         message=(
             "\nAdd intro and outro?\n"
-            "- If 'yes', the program will start with the line 'Begiining program.' and end with the line 'Program "
+            "- If 'yes', the program will start with the line 'Beginning program.' and end with the line 'Program "
             "complete.'\n"
             "- If 'no', the program will start and end with the text from the imported files."
         ),
     ):
-        final_text.append("Beginning program.")
+        final_text.append("Beginning program")
 
     print(f"{'LOAD FILES':=^80}")
 

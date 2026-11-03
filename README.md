@@ -15,7 +15,7 @@ It can be hard to find a hypnosis/reinforcement audio file that suits your speci
 - **Randomise**: You can choose to randomise the line order for each repeat.
 - **Progress markers**: You can choose to insert audible "progress markers" every X% of the way through a section of the audio file (for example "Programming at 25%"), so that the subject knows how far through their programming scene they are.
 - **Intro and Outro**: You can choose to add a "Beginning Program" and "Program Complete" phrase to the start and end of the completed script.
-- **Join Multiple Files**: You can choose to join multiple text files into a single audio file, or generate separate audio files for each text file. For example, you could have an "intro" file that doesn't repeat and isnt suffled, and then a "main" file that repeats and is shuffled, which can export as a single mp3 file.
+- **Join Multiple Files**: You can choose to join multiple text files into a single audio file, or generate separate audio files for each text file. For example, you could have an "intro" file that doesn't repeat and isn't shuffled, and then a "main" file that repeats and is shuffled, which can export as a single .wav file.
 - **Your Language**: Since it uses your Operating System's text-to-speech engine, you can use any language or accent that your OS's text to speech engine supports - just write your text files in the appropriate language, and set your OS's default text-to-speech voice to the desired language/accent.
 
 ## Table of Contents
@@ -32,7 +32,7 @@ It can be hard to find a hypnosis/reinforcement audio file that suits your speci
 I strongly recommend using [uv](https://docs.astral.sh/uv/), which will simplify installing Python if you don't have it, as well as setting up dependencies and running the program, though you can also use `pip` if you prefer.
 
 ### Using `uv`
-1. Clone or download the respository
+1. Clone or download the repository
 2. Open a terminal in the project directory
 3. Run the following command to install dependencies (this will also automatically install Python 3.15 if you don't have it):
     ```bash
