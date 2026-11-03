@@ -10,18 +10,33 @@ type LineProviderFunc = Callable[[Sequence[str]], list[str]]
 type ProgressProviderFunc = Callable[[], dict[int, int]]
 
 
-def _process_file(
+def _read_lines(filepath: Path) -> list[str]:
+    """Reads the lines of a UTF-8 text file, skipping blank lines and removing trailing full stops.
+
+    A UTF-8 byte order mark at the start of the file (as added by some Windows editors) is ignored.
+
+    Args:
+        filepath (Path): The filepath to the file to read.
+
+    Returns:
+        list[str]: The non-blank lines of the file.
+    """
+    text = filepath.read_text(encoding="utf-8-sig")
+    return [stripped for line in text.splitlines() if (stripped := line.strip().removesuffix("."))]
+
+
+def _process_lines(
     *,
-    filepath: Path,
+    lines: Sequence[str],
     num_cycles: int,
     line_provider: LineProviderFunc,
     progress_provider: ProgressProviderFunc,
 ) -> list[str]:
-    """Generates text from a file, using the given `line_provider` and `progress_provider` functions.
+    """Generates text from lines, using the given `line_provider` and `progress_provider` functions.
 
     Args:
-        filepath (Path): The filepath to the file to import.
-        num_cycles (int): The number of times to repeat the file.
+        lines (Sequence[str]): The lines to repeat.
+        num_cycles (int): The number of times to repeat the lines.
         line_provider (LineProviderFunc): The function to use to generate the lines.
         progress_provider (ProgressProviderFunc): The function to use to generate the progress markers.
 
@@ -32,10 +47,6 @@ def _process_file(
 
     # Getting progress marker cycle nums, if any
     progress_report_cycles = progress_provider()
-
-    # open the filepath and make a list of each line
-    with filepath.open(encoding="utf-8") as file:
-        lines = [line.replace("\n", "").strip().removesuffix(".") for line in file.readlines()]
 
     # repeat the lines num_cycles times
     for completed_cycles in range(1, num_cycles + 1):
@@ -48,14 +59,14 @@ def _process_file(
     return final_lines
 
 
-def _get_text_from_file(*, import_filepath: Path) -> list[str]:
-    """Generates text from a file chosen by the user.
+def _get_text_from_lines(*, lines: Sequence[str]) -> list[str]:
+    """Generates text from the lines of a file chosen by the user.
 
     The user is prompted to choose options for the file, including the number of times to repeat it, whether to shuffle
     the lines, and whether to add progress markers. The text is generated and returned as a list of strings.
 
     Args:
-        import_filepath (Path): The filepath to the file to import.
+        lines (Sequence[str]): The lines read from the chosen file.
 
     Returns:
         list[str]: The generated text as a list of strings.
@@ -103,8 +114,8 @@ def _get_text_from_file(*, import_filepath: Path) -> list[str]:
     else:
         progress_report_cycles = get_no_progress_markers
 
-    return _process_file(
-        filepath=import_filepath,
+    return _process_lines(
+        lines=lines,
         num_cycles=num_cycles,
         line_provider=line_provider,
         progress_provider=progress_report_cycles,
@@ -151,7 +162,7 @@ def get_text_from_files(*, import_dir: Path) -> str:
             )
         except ValueError as e:
             raise ValueError from e
-        file_text = _get_text_from_file(import_filepath=text_filepath)
+        file_text = _get_text_from_lines(lines=_read_lines(text_filepath))
         final_text.extend(file_text)
 
         if not get_bool_user_choice("\nAdd another file?"):
