@@ -1,5 +1,5 @@
-from pathlib import Path
 from typing import cast
+lazy from pathlib import Path
 
 import pyttsx3  # pyright: ignore[reportMissingTypeStubs]
 

@@ -35,8 +35,8 @@ def test_get_progress_marker_cycle_nums(num_cycles: int, expected_output: dict[i
 
 
 def test_get_progress_marker_cycle_nums_raises_value_error() -> None:
-    with pytest.raises(ValueError):  # noqa: PT011
+    with pytest.raises(ValueError):  # ruff: ignore[pytest-raises-too-broad]
         _ = get_progress_marker_cycle_nums(num_cycles=1, num_markers=2)
 
-    with pytest.raises(ValueError):  # noqa: PT011
+    with pytest.raises(ValueError):  # ruff: ignore[pytest-raises-too-broad]
         _ = get_progress_marker_cycle_nums(num_cycles=2, num_markers=1)

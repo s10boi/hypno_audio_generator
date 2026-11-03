@@ -1,13 +1,10 @@
 from functools import partial
-from pathlib import Path
-from typing import TYPE_CHECKING
+lazy from collections.abc import Callable, Sequence
+lazy from pathlib import Path
 
 from src.text_processing.line_providers import ordered_lines, shuffle_lines
 from src.text_processing.progress_providers import get_no_progress_markers, get_progress_marker_cycle_nums
 from src.ux import get_bool_user_choice, get_int_user_choice_ge, get_user_choice_from_sequence
-
-if TYPE_CHECKING:
-    from collections.abc import Callable, Sequence
 
 type LineProviderFunc = Callable[[Sequence[str]], list[str]]
 type ProgressProviderFunc = Callable[[], dict[int, int]]

@@ -34,7 +34,7 @@ def get_progress_marker_cycle_nums(*, num_cycles: int, num_markers: int) -> dict
     """
     progress_markers: dict[int, int] = {}
 
-    if num_markers < 2 or num_cycles < 2:  # noqa: PLR2004
+    if num_markers < 2 or num_cycles < 2:  # ruff: ignore[magic-value-comparison]
         msg = "num_markers and num_cycles must be greater than 1"
         raise ValueError(msg)
 

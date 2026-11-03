@@ -1,5 +1,5 @@
-from collections.abc import Sequence
 from random import shuffle
+lazy from collections.abc import Sequence
 
 
 def ordered_lines(lines: Sequence[str]) -> list[str]:

@@ -6,17 +6,18 @@ lint.select = [
 ]
 
 lint.ignore = [
-    "CPY001",  # Missing copyright notice
-    "D100",  # Missing docstring in public module
-    "D101",  # Missing docstring in public class
-    "D102",  # Missing docstring in public method
-    "D103",  # Missing docstring in public function
-    "D105",  # Missing docstring in magic method
-    "DOC201",  # Missing return in docstring
-    "T201",  # Warning for the use of "print"
-    "RUF001",  # Ambiguous characters (e.g. Chinese brackets)
-    "D106",  # Missing docstring in public nested class
-    "PGH003"
+    "missing-copyright-notice",
+    "undocumented-public-module",
+    "undocumented-public-class",
+    "undocumented-public-method",
+    "undocumented-public-function",
+    "undocumented-magic-method",
+    "undocumented-public-nested-class",
+    "docstring-missing-returns",
+    "print",
+    "ambiguous-unicode-character-string",  # e.g. Chinese brackets
+    "blanket-type-ignore",
+    "missing-trailing-comma",  # Conflicts with the formatter
 ]
 
 [lint.pydocstyle]
@@ -28,12 +29,12 @@ allow-star-arg-any = true
 
 [lint.per-file-ignores]
 "__init__.py" = [
-    "D104",  # Missing docstring in public package
-    "F401",  # Unused import
-    "F403",  # Import * used
+    "undocumented-public-package",
+    "unused-import",
+    "undefined-local-with-import-star",
 ]
 "test_*.py" = [
-    "D",  # Ignore missing docstrings in tests
-    "PLC2701",  # Ignore too many local variables
-    "S101",  # Use of assert detected
+    "D",  # Docstrings aren't required in tests
+    "import-private-name",  # Tests may exercise private helpers
+    "assert",
 ]

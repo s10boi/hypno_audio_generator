@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+lazy from collections.abc import Sequence
 
 
 def get_user_choice_from_sequence[T](sequence: Sequence[T], message: str) -> T:
